@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.grails.plugins</groupId>
+  <artifactId>excel-import</artifactId>
+  <version>3.0.0.RC6</version>
+  <dependencies>
+    <dependency>
+      <groupId>org.grails.plugins</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.0.0</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.16</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.16</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.xmlbeans</groupId>
+      <artifactId>xmlbeans</artifactId>
+      <version>2.6.0</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+  <name>Excel Import Plugin</name>
+  <description>Grails Excel Import Plugin</description>
+  <url>https://github.com/gpc/grails-excel-import</url>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>https://github.com/gpc/grails-excel-import</url>
+    <connection>scm:git@github.com:gpc/grails-excel-import.git</connection>
+    <developerConnection>scm:git@github.com:gpc/grails-excel-import.git</developerConnection>
+  </scm>
+  <issueManagement>
+    <system>Github Issues</system>
+    <url>https://github.com/gpc/grails-excel-import/issues</url>
+  </issueManagement>
+  <developers>
+    <developer>
+      <id>jeffbrown</id>
+      <name>Jeff Scott Brown</name>
+    </developer>
+    <developer>
+      <id>jeanbarmash</id>
+      <name>Jean.Barmash@gmail.com</name>
+    </developer>
+  </developers>
+</project>

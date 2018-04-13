@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.grails.plugins</groupId>
+  <artifactId>embedded-mongodb</artifactId>
+  <version>1.0.2</version>
+  <dependencies>
+    <dependency>
+      <groupId>de.flapdoodle.embed</groupId>
+      <artifactId>de.flapdoodle.embed.mongo</artifactId>
+      <version>1.50.5</version>
+      <scope>runtime</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>commons-io</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>org.apache.commons</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>net.java.dev.jna</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.grails.plugins</groupId>
+      <artifactId>mongodb</artifactId>
+      <version>5.0.8</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+  <name>Embedded MongoDB Plugin</name>
+  <description>Executes an embedded mongo database for integration or functional testing</description>
+  <url>https://github.com/grails-plugins/grails-embedded-mongodb</url>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>https://github.com/grails-plugins/grails-embedded-mongodb</url>
+    <connection>scm:git@github.com:grails-plugins/grails-embedded-mongodb.git</connection>
+    <developerConnection>scm:git@github.com:grails-plugins/grails-embedded-mongodb.git</developerConnection>
+  </scm>
+  <issueManagement>
+    <system>Github Issues</system>
+    <url>https://github.com/grails-plugins/grails-embedded-mongodb/issues</url>
+  </issueManagement>
+  <developers>
+    <developer>
+      <id>jameskleeh</id>
+      <name>James Kleeh</name>
+    </developer>
+  </developers>
+</project>
