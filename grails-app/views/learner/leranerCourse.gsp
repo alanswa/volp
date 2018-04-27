@@ -514,12 +514,20 @@ xmlhttp.open("GET", "${request.contextPath}/learner/showCourseData?sessionid=" +
 xmlhttp.send();
 }
 ///////////////
+var markreviewStatus = false
 function markAsReview(val,id)
 {
-    alert("val"+val)
+   // alert("val"+val)
     var property = document.getElementById(val);
-    property.style.backgroundColor = "#f4a1c7"
+    property.style.backgroundColor = "#f4a1c7";
+    markreviewStatus = true;
+    retStatus();
 }
+ function retStatus()
+ {
+     return markreviewStatus;
+ }
+
 function GenreateQuestion(coffr)
 {
     var xmlhttp = new XMLHttpRequest();
@@ -532,13 +540,7 @@ function GenreateQuestion(coffr)
     xmlhttp.send();
 }
 function myFunction(size,val,cid,id,qid,ans) {
-     //
-     alert("hi"+ans);
-     if(qid != null)
-     {
-        saveQuestionData(qid,ans);
-     }
-     var xmlhttp = new XMLHttpRequest();
+         var xmlhttp = new XMLHttpRequest();
          xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
             document.getElementById("material").innerHTML = this.responseText;
@@ -549,7 +551,7 @@ function myFunction(size,val,cid,id,qid,ans) {
 }
 function getQ(val,cid,id)
  {
-    alert("hi"+id);
+    //alert("hi alankar"+);
       var xmlhttp = new XMLHttpRequest();
              xmlhttp.onreadystatechange = function() {
               if (this.readyState == 4 && this.status == 200) {
@@ -559,18 +561,47 @@ function getQ(val,cid,id)
             xmlhttp.open("GET", "${request.contextPath}/learner/generateQues?val=" + val + "&cid="+ cid + "&sessionid=" +id, true);
             xmlhttp.send();
  }
-function saveQuestionData(qid)
+ var globalVariable=[];
+ function handleClick(cb,id) {
+            // alert(cb);
+    var ele = document.getElementById(cb);
+    //alert(ele.checked);
+    if(ele.checked)
+    {
+        globalVariable.push(cb);
+    }
+    else
+    {
+        globalVariable.pop();
+    }
+    alert("globalVariable"+globalVariable)
+    retOption();
+ }
+ function retOption()
+ {
+     return globalVariable;
+ }
+
+function saveQuestionData(size,val,cid,id,qid,ans)
 {
-    alert("call save data "+qid);
+    //alert("call save data "+qid );
+    var opid = retOption();
+    alert(opid);
+    var qstatus = retStatus();
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
        if (this.readyState == 4 && this.status == 200) {
               document.getElementById("material").innerHTML = this.responseText;
           }
        };
-       xmlhttp.open("GET", "${request.contextPath}/learner/saveQuestionData?qid=" + qid, true);
+       xmlhttp.open("GET", "${request.contextPath}/learner/saveQuestionData?qid=" + qid + "&opid=" + opid +"&qstatus="+qstatus, true);
        xmlhttp.send();
+       globalVariable=[];
+       markreviewStatus = false
+
+
 }
+
 ///////////////
 function callTopic(topicid){
 

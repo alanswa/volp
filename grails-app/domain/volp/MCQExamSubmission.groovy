@@ -1,7 +1,8 @@
 package volp
 
 class MCQExamSubmission {
-    static belongsTo=[mcqexamoption:MCQExamOptions,courseofferinglearner:CourseOfferingLearner,mcqexam:MCQExam]
+    static belongsTo=[courseofferinglearner:CourseOfferingLearner,mcqexam:MCQExam]
+    static hasMany =[mcqexamoption:MCQExamOptions]
     String username
     Date creation_date
     String remark

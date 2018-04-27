@@ -790,6 +790,7 @@ class LearnerController {
             println("Data not present")
         }
         def mcqData = MCQExamSubmission.findAllByCourseofferinglearner(studentLearner)
+        println("test............................."+mcqData)
         for(MCQExamSubmission mcq :mcqData)
         {
             def qo =[]
@@ -827,11 +828,13 @@ class LearnerController {
     }
     def showChoice()
     {
-        println("params"+params.id)
+        println("show choice params "+params.id)
         def mcqData = MCQExam.findById(params.id)
-        println("mcqData"+mcqData)
+        println("show chice mcqData"+mcqData)
         def mcqOption = MCQExamOptions.findAllByMcqexam(mcqData)
-        [mcqOption:mcqOption]
+        println("show choice mcqoption data"+mcqOption)
+        def mcqsubdata = MCQExamSubmission.findByMcqexam(mcqData)
+        [mcqOption:mcqOption,mcqData:mcqData,mcqsubdata:mcqsubdata]
         //def option = MCQExamOptions.findBy
         //render (mcqOption.option_value)
     }
@@ -879,7 +882,10 @@ class LearnerController {
         def studentLearner = CourseOfferingLearner.findByLearnerAndCourseoffering(student,courseOffer)
         println("CourseOfferingLearner alan"+studentLearner)
         def size = MCQExamSubmission.findAllByCourseofferinglearner(studentLearner)
+        println("size ......................"+size)
+        println("i am generateQuestion"+size.size)
         def mcqData = MCQExamSubmission.findByCourseofferinglearnerAndId(studentLearner,list[session.counter])
+        println("testing......................"+mcqData)
         println("Course offering::"+mcqData.courseofferinglearner.courseoffering.id)
         println("Difficulty level::"+mcqData.mcqexam.difficultylevel.id)
         println("mcqexam::"+mcqData.mcqexam.id)
@@ -889,7 +895,6 @@ class LearnerController {
         println(mcqData.mcqexam)
         println("params"+params)
         [mcqData:mcqData,size:size.size,cid:cid,mcqpatern:mcqpatern]
-        //render("jjjjj")
     }
     def generateQues()
     {
@@ -906,13 +911,72 @@ class LearnerController {
         def mcqpatern = MCQBasedExamPattern.findByCourseOfferingAndDifficultylevel(mcqData.courseofferinglearner.courseoffering,mcqData.mcqexam.difficultylevel)
         println(" weightage::"+mcqpatern.weightageToEachQuestion)
         int qno = Integer.parseInt(params.sessionid)
+        println("testing...................qno"+mcqData.mcqexamoption)
         [mcqData:mcqData,size:size.size,qno:qno,cid:cid,mcqpatern:mcqpatern]
     }
     def saveQuestionData()
     {
         println("save question data params"+params)
+
+        //MCQExam mcq = MCQExam.findById(params.qid)
+        //println("mcq"+mcq)
         MCQExamSubmission mcqesub = MCQExamSubmission.findById(params.qid)
-        println("qsttement"+mcqesub.mcqexam.question_statement)
-        render("Ok")
+        println("Question statemwnr"+mcqesub)
+        def examQeues = mcqesub.mcqexam
+        String str = params.opid
+        def opList = str.replaceAll(",","") as List
+        def mcq = mcqesub.mcqexam
+        println()
+        println(opList.size())
+        if(opList.size()>0) {
+            for (int i = 0; i < opList.sort().size(); i++) {
+                def op = MCQExamOptions.findByOption_nameAndMcqexam(opList[i], mcq)
+                println("OP"+op)
+                println("save question Data " + op.option_name + " value" + op.option_value)
+                mcqesub.addToMcqexamoption(op)
+            }
+            if (!(params.qstatus).equals("false")) {
+                mcqesub.remark = "markAsReview"
+            } else {
+                mcqesub.remark = "Completed";
+            }
+            mcqesub.username = session.uid
+            mcqesub.updation_ip_address = request.getRemoteAddr()
+            mcqesub.updation_date =  new java.util.Date()
+            mcqesub.save(flush:true,failOnError: true)
+        }
+
+            println("i am in genrate question" + session)
+            def crslearn = CourseOfferingLearner.findById(session.crsLearner)
+            println("crslearn" + crslearn)
+            def courseOffer = crslearn.courseoffering
+            println("alankar................................courseOffer" + courseOffer)
+            def list = session.mcq
+            String uid = session.uid
+            Learner student = Learner.findByUid(uid)
+            println("student" + student)
+            def studentLearner = CourseOfferingLearner.findByLearnerAndCourseoffering(student, courseOffer)
+            println("CourseOfferingLearner alan" + studentLearner)
+            def size = MCQExamSubmission.findAllByCourseofferinglearner(studentLearner)
+            println("size ......................" + size)
+            println("i am generateQuestion" + size.size)
+            println("session.counter"+session.counter+"..............."+size.size)
+        if(session.counter<size.size) {
+            def mcqData = MCQExamSubmission.findByCourseofferinglearnerAndId(studentLearner, list[session.counter])
+            println("testing......................" + mcqData)
+            println("Course offering::" + mcqData.courseofferinglearner.courseoffering.id)
+            println("Difficulty level::" + mcqData.mcqexam.difficultylevel.id)
+            println("mcqexam::" + mcqData.mcqexam.id)
+            def mcqpatern = MCQBasedExamPattern.findByCourseOfferingAndDifficultylevel(mcqData.courseofferinglearner.courseoffering, mcqData.mcqexam.difficultylevel)
+            println(" weightage::" + mcqpatern.weightageToEachQuestion)
+            session.counter += 1
+            println(mcqData.mcqexam)
+            println("params" + params)
+            [mcqData: mcqData, size: size.size, cid: courseOffer.id, mcqpatern: mcqpatern]
+        }
+        else
+        {
+            render("ok")
+        }
     }
 }

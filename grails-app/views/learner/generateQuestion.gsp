@@ -27,9 +27,8 @@ Weightage ${mcqpatern.weightageToEachQuestion}
            <img src="${createLink(controller:'MCQExam',action:'renderImage',id:"${mcq.mcqexam.id}")}" params:'"${mcq}"'></br>
         </g:if>
         <g:include action="showChoice" id="${mcq.mcqexam.id}" />
-
 </g:each>
-<button id="next" value=""next class="btn btn-sm btn-warning" onclick="myFunction('${qsize}','${session.mcq}','${cid}',id,'${mcqData.id}')">Next</button>
+<button id="next" value=""next class="btn btn-sm btn-warning" onclick="saveQuestionData('${qsize}','${session.mcq}','${cid}',id,'${mcqData.id}')">Next</button>
 </div>
 <div>
     <g:each var ="i" in="${1..size}" status="ii">
@@ -38,3 +37,6 @@ Weightage ${mcqpatern.weightageToEachQuestion}
     Mark as Review:<g:checkBox name="review" value="${review}" id="review" onclick="markAsReview('${session.counter}',id)"/>
 </div>
 
+<script>
+
+</script>
