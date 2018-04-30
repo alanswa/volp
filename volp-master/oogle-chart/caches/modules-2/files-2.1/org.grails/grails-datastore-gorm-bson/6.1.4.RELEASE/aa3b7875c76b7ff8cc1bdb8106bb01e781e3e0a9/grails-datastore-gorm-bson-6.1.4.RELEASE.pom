@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.grails</groupId>
+  <artifactId>grails-datastore-gorm-bson</artifactId>
+  <version>6.1.4.RELEASE</version>
+  <dependencies>
+    <dependency>
+      <groupId>org.grails</groupId>
+      <artifactId>grails-datastore-gorm</artifactId>
+      <version>6.1.7.RELEASE</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>bson</artifactId>
+      <version>3.5.0</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+  <name>GORM for MongoDB</name>
+  <description>Provides a GORM Object Mapping implementations for the MongodB Document Database</description>
+  <url>https://gorm.grails.org/latest/mongodb</url>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>https://github.com/grails/gorm-mongodb</url>
+    <connection>https://github.com/grails/gorm-mongodb</connection>
+    <developerConnection>https://github.com/grails/gorm-mongodb</developerConnection>
+  </scm>
+  <developers>
+    <developer>
+      <id>graemerocher</id>
+      <name>Graeme Rocher</name>
+    </developer>
+    <developer>
+      <id>jeffscottbrown</id>
+      <name>Jeff Brown</name>
+    </developer>
+    <developer>
+      <id>burtbeckwith</id>
+      <name>Burt Beckwith</name>
+    </developer>
+  </developers>
+</project>
