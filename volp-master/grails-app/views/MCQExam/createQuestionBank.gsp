@@ -1,4 +1,3 @@
-
 <style>
 table {
     font-family: arial, sans-serif;
@@ -30,11 +29,11 @@ tr:nth-child(even) {
     Question Difficulty Level Data<g:select name="difficultyLevelData" from="${difficultyLevelData}" optionValue="${{it.level_value+" : "+it.name}}" optionKey="id" />
     <br/>Is Approved Question <g:checkBox name="isapproved" value="${true}"/>
     <div id="OptionContent" >
-        <br><br>A: <input type="radio" name="ans" value="1" id="A" checked="checked" /> <g:textField name="option_name" value="${option_name}" /></p>
-        <p>B: <input type="radio" name="ans" value="2"  id="2" /><g:textField name="option_name" value="${option_name}" /></p>
-        <p>C: <input type="radio" name="ans" value="3"  id="3" /><g:textField name="option_name" value="${option_name}" /></p>
-        <p>D: <input type="radio" name="ans" value="4"  id="4" /><g:textField name="option_name" value="${option_name}" /></p>
-        <p>E: <input type="radio" name="ans" value="5"  id="5"/><g:textField name="option_name" value="${option_name}" /></p>
+        <br><br>A: <input type="checkbox" name="ans" value="1" id="A" checked="checked" /> <g:textField name="option_name" value="${option_name}" /></p>
+        <p>B: <input type="checkbox" name="ans" value="2"  id="2" /><g:textField name="option_name" value="${option_name}" /></p>
+        <p>C: <input type="checkbox" name="ans" value="3"  id="3" /><g:textField name="option_name" value="${option_name}" /></p>
+        <p>D: <input type="checkbox" name="ans" value="4"  id="4" /><g:textField name="option_name" value="${option_name}" /></p>
+        <p>E: <input type="checkbox" name="ans" value="5"  id="5"/><g:textField name="option_name" value="${option_name}" /></p>
     </div>
 </div>
 <input type="submit" name="update" id="update" value="Update" />
@@ -50,7 +49,6 @@ tr:nth-child(even) {
    <g:each var="option" in="${mcqAllData}" status="counter" >
    <tr >
       <td><a href ="#" onclick="updateMCQ(${option.id})" id="${option.id}" ><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>
-
       <td>${option.sno}</td>
       <td>${option.question_statement}
       </br>
